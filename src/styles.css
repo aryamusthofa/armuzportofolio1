@@ -1671,3 +1671,69 @@ ul {
     display: none;
   }
 }
+
+/* ---------- super interaktif: cursor, hero chars, marquee skew ---------- */
+
+.cursor-dot {
+  position: fixed;
+  top: -4px;
+  left: -4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  z-index: 300;
+  pointer-events: none;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: -19px;
+  left: -19px;
+  width: 38px;
+  height: 38px;
+  border: 1.5px solid var(--accent);
+  border-radius: 50%;
+  z-index: 299;
+  pointer-events: none;
+}
+
+body:has(.cursor-dot) {
+  cursor: none;
+}
+
+body:has(.cursor-dot) a,
+body:has(.cursor-dot) button {
+  cursor: none;
+}
+
+.hero-char {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-out), color 0.25s;
+}
+
+.hero-char:hover {
+  transform: translateY(-0.08em) rotate(-4deg);
+  color: var(--accent);
+}
+
+.hero__line--accent .hero-char:hover {
+  color: var(--ink);
+}
+
+.marquee__skew {
+  will-change: transform;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+
+  body:has(.cursor-dot),
+  body:has(.cursor-dot) a,
+  body:has(.cursor-dot) button {
+    cursor: auto;
+  }
+}

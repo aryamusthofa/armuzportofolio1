@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { content } from "../content";
 import { ProjectArtwork } from "./ProjectArtwork";
+import { Tilt } from "./Tilt";
 import { Reveal } from "./Reveal";
 
 export function Work() {
@@ -38,12 +39,12 @@ export function Work() {
                     aria-label={`View ${project.title} case study`}
                   />
                 )}
-                <div className="project-card__visual">
+                <Tilt className="project-card__visual">
                   <ProjectArtwork project={project} />
                   <span className="project-card__view">
                     View project <ArrowUpRight size={18} />
                   </span>
-                </div>
+                </Tilt>
                 <div className="project-card__meta">
                   <span>0{index + 1} / {project.category}</span>
                   <span>{project.year}</span>

@@ -3,6 +3,17 @@ import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-moti
 import { ArrowDown } from "lucide-react";
 import { content } from "../content";
 
+/* setiap huruf bereaksi saat disorot kursor */
+function CharSplit({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("").map((ch, i) => (
+        <span key={i} className="hero-char">{ch}</span>
+      ))}
+    </>
+  );
+}
+
 const titleTransition = { duration: 1.05, ease: [0.16, 1, 0.3, 1] as const };
 
 export function Hero() {
@@ -50,7 +61,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ ...titleTransition, delay: 0.18 }}
             >
-              {content.hero.titleStart}
+              <CharSplit text={content.hero.titleStart} />
             </motion.span>
           </span>
           <span className="hero__line hero__line--accent" aria-hidden="true">
@@ -59,7 +70,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ ...titleTransition, delay: 0.28 }}
             >
-              <em>{content.hero.titleAccent}</em>
+              <em><CharSplit text={content.hero.titleAccent} /></em>
               <span className="hero__spark">✳</span>
             </motion.span>
           </span>
@@ -69,7 +80,7 @@ export function Hero() {
               animate={{ y: 0 }}
               transition={{ ...titleTransition, delay: 0.38 }}
             >
-              {content.hero.titleEnd}
+              <CharSplit text={content.hero.titleEnd} />
             </motion.span>
           </span>
         </h1>

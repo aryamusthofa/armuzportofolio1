@@ -1,6 +1,35 @@
+import { useEffect, useRef, useState } from "react";
 import { ArrowDownRight } from "lucide-react";
+import { useInView } from "framer-motion";
 import { content } from "../content";
 import { Reveal } from "./Reveal";
+
+/* angka statistik berhitung naik saat masuk layar */
+function StatValue({ value }: { value: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-15% 0px" });
+  const [display, setDisplay] = useState(value);
+
+  useEffect(() => {
+    if (!inView) return;
+    const match = value.match(/^(\d+)(.*)$/);
+    if (!match || Number(match[1]) === 0) return;
+    const target = parseInt(match[1], 10);
+    const suffix = match[2];
+    const start = performance.now();
+    const duration = 1100;
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / duration);
+      setDisplay(`${Math.round(target * (1 - Math.pow(1 - p, 3)))}${suffix}`);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [inView, value]);
+
+  return <span ref={ref}>{display}</span>;
+}
 
 export function About() {
   return (
@@ -50,7 +79,7 @@ export function About() {
         <div className="stats-grid">
           {content.stats.map((stat, index) => (
             <Reveal className="stat" key={stat.label} delay={index * 0.08}>
-              <strong>{stat.value}</strong>
+              <strong><StatValue value={stat.value} /></strong>
               <span>{stat.label}</span>
             </Reveal>
           ))}

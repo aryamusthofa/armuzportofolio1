@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { content } from "./content";
+import { Cursor } from "./components/Cursor";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Marquee } from "./components/Marquee";
@@ -66,6 +67,7 @@ export default function App() {
 
   return (
     <>
+      <Cursor />
       <a className="skip-link" href="#main-content">Skip to content</a>
       <motion.div className="scroll-progress" style={{ scaleX: reduceMotion ? scrollYProgress : progress }} />
       <Header />
