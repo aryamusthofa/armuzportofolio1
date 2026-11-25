@@ -5,6 +5,7 @@ import { content } from "../content";
 
 const navigation = [
   { label: "Work", href: "#work", id: "work" },
+  { label: "Play", href: "#play", id: "play" },
   { label: "About", href: "#about", id: "about" },
   { label: "Services", href: "#services", id: "services" },
   { label: "Contact", href: "#contact", id: "contact" },

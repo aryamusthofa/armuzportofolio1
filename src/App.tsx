@@ -6,6 +6,7 @@ import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { Marquee } from "./components/Marquee";
 import { Work } from "./components/Work";
+import { Playground } from "./components/Playground";
 import { About } from "./components/About";
 import { Services } from "./components/Services";
 import { Process } from "./components/Process";
@@ -72,6 +73,7 @@ export default function App() {
         <Hero />
         <Marquee />
         <Work />
+        <Playground />
         <About />
         <Services />
         <Process />
